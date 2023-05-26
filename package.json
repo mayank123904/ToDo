@@ -23,6 +23,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
     "next": "^13.4.4",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "react-jsx-runtime": "^1.0.0-alpha.1"
   }
 }
