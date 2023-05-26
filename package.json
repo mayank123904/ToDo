@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "type": "module",
-  "engines":{"node":">=14.20.1"},
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -20,6 +22,7 @@
     "git": "^0.1.5",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
+    "next": "^13.4.4",
     "nodemon": "^2.0.22"
   }
 }
