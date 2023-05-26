@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "type": "module",
-  "engines":{"node":">=14.201"},
+  "engines":{"node":">=14.20.1"},
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
