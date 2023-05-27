@@ -47,6 +47,21 @@ export const getMyProfile = (req, res) => {
   });
 };
 
+export const getDetail = async (req, res, next) => {
+  try {
+    const userid = req.params.id;
+    
+    const user = await User.findById(userid );
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const logout = (req, res) => {
   res
     .status(200)

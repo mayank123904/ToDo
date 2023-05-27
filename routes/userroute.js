@@ -1,5 +1,5 @@
 import express from "express";
-import {register,login, getMyProfile,logout} from "../controllers/usercontroller.js";
+import {register,login, getMyProfile,logout, getDetail} from "../controllers/usercontroller.js";
 import { isAuthenticated } from "../middlewares/auth.js";
 // import { User } from "../models/usermodel.js";
 
@@ -12,6 +12,8 @@ router.post("/login",login);
 router.get("/me",isAuthenticated,getMyProfile);
 
 router.get("/logout",logout);
+
+router.get("/userid/:id",getDetail)
 // router.put("userid/:id",updateUser);
 
 // router.delete("userid/:id",deleteUser)
