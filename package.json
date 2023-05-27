@@ -2,7 +2,7 @@
   "name": "6ppproject2",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "type": "module",
   "engines": {
     "node": ">=14.20.1"
@@ -19,11 +19,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "git": "^0.1.5",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
-    "next": "^13.4.4",
-    "nodemon": "^2.0.22",
-    "react-jsx-runtime": "^1.0.0-alpha.1"
+    "nodemon": "^2.0.22"
   }
 }
