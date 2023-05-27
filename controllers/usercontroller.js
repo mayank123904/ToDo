@@ -26,13 +26,13 @@ export const register = async (req, res,next) => {
   try {
     const { name, email, password } = req.body;
 
-    let user = await User.findOne({ email });
+    // let user = await User.findOne({ email });
 
-    if (user) return next(new ErrorHandler("User Already Exist", 400));
+    // if (user) return next(new ErrorHandler("User Already Exist", 400));
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    user = await User.create({ name, email, password: hashedPassword });
+    let user = await User.create({ name, email, password: hashedPassword });
 
     sendCookie(user, res, "Registered Successfully", 201);
   } catch (error) {
@@ -51,7 +51,7 @@ export const getDetail = async (req, res, next) => {
   try {
     const userid = req.params.id;
     
-    const user = await User.findById(userid );
+    const user = await User.findById(userid);
 
     res.status(200).json({
       success: true,
