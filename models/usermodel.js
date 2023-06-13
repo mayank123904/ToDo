@@ -16,6 +16,10 @@ const schema=new mongoose.Schema({
         select: false,
         required:true,
     },
+    profilepiclink: {
+        type:String,
+        required:true,
+      },
     createdAt:{
     type:Date,
     default: Date.now,

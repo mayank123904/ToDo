@@ -2,7 +2,8 @@ import { User } from "../models/usermodel.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewares/error.js";
-
+// import multer from "multer";
+// import path from "path"
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -21,21 +22,25 @@ export const login = async (req, res, next) => {
     next(error);
   }
 };
-
 export const register = async (req, res,next) => {
+
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, profilepiclink } = req.body;
+    let user = await User.findOne({ email });
+    if (user) return next(new ErrorHandler("User Already Exist", 400));
 
-    // let user = await User.findOne({ email });
+  
+    const salt = await bcrypt.genSalt(10);
+  
+    // Hash the password with the generated salt
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // if (user) return next(new ErrorHandler("User Already Exist", 400));
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    let user = await User.create({ name, email, password: hashedPassword });
-
+    user = await User.create({ name, email, password: hashedPassword,profilepiclink});
+    
     sendCookie(user, res, "Registered Successfully", 201);
-  } catch (error) {
+  }
+ catch (error) {
+
     next(error);
   }
 };
@@ -66,12 +71,12 @@ export const logout = (req, res) => {
   res
     .status(200)
     .cookie("token", "", {
-      expires: new Date(Date.now()),
+      expires: new Date(Date.now()+ 24 * 60 * 60 * 1000),
       sameSite: process.env.NODE_ENV === "Develpoment" ? "lax" : "none",
-      secure: process.env.NODE_ENV === "Develpoment" ? false : true,
+      secure: process.env.NODE_ENV === "Development" ? false : true,
     })
     .json({
       success: true,
-      user: req.user,
+      user:req.user,
     });
 };
